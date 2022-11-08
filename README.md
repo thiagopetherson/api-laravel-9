@@ -35,21 +35,21 @@ Helpers - Reutilização e Clean Code<br/>
 Na pasta raiz da aplicação rode no terminal:
 
 `composer install`
- 
-O nome do banco de dados que estabelecemos no arquivo .env é o "teste_solluti_api". Então será necessário que você configure esse banco no arquivo .env e crie esse banco na sua máquina (no Laravel 9, essa criação manual do banco de dados não é mais necessária). 
- 
+
+
 Rode o comando abaixo (No terminal, na pasta raiz do projeto), para criação das tabelas no banco:
  
 `php artisan migrate`
 
+
 Para teste do envio de email, recomendo o uso do Mailtrap. Pois foi o que foi usado no desenvolvimento. Você deve ir no site `https://mailtrap.io/` e fazer o cadastro.
 
-Após o cadastro no Mailtrap, você deve ir em "Inboxes" -> "SMTP Settings" -> "Integrations" e selecionar a opção Laravel.
+No painel do Mailtrap, você deve ir em "Inboxes" -> "SMTP Settings" -> "Integrations" e selecionar a opção Laravel.
 Com isso, será gerado seu código de configuração do serviço SMTP. Conforme o exemplo abaixo:
 
 ![Screenshot from 2022-11-08 13-37-58](https://user-images.githubusercontent.com/44420212/200623270-23adfd08-3eb0-4f94-b7e1-c59c52ae0fa0.png)
 
-Então é só copiar esse código e substituir pelo código que está no arquivo .env do projeto.
+Então é só copiar esse código, que será gerado pelo Mailtrap, e substituir pelo código que está no arquivo .env do projeto.
 
 
 Por fim, rodamos o comando abaixo, que roda nossa aplicação backend laravel (No terminal, na pasta raiz do projeto):
