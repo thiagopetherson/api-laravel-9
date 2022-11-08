@@ -29,7 +29,6 @@ Composer e Laravel
 
 <br/>
 
-
 ## 📦 Desenvolvimento Backend (Ferramentas utilizadas na API Laravel)
 
 Rotas e Métodos Resources.<br/>
@@ -59,9 +58,9 @@ Com isso, será gerado seu código de configuração do serviço SMTP. Conforme 
 
 ![Screenshot from 2022-11-08 13-37-58](https://user-images.githubusercontent.com/44420212/200623270-23adfd08-3eb0-4f94-b7e1-c59c52ae0fa0.png)
 
-Então é só copiar esse código e substituir no arquivo .env do projeto.
+Então é só copiar esse código e substituir pelo código que está no arquivo .env do projeto.
 
- 
+
 Por fim, rodamos o comando abaixo, que roda nossa aplicação backend laravel (No terminal, na pasta raiz do projeto):
  
 `php artisan serve`
