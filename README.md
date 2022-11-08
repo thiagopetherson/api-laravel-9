@@ -20,15 +20,6 @@ Você precisa ter instalado em sua máquina:
 - Composer<br/>
 - Laravel<br/>
 
-
-## 📋 Guia para instalação
-
-Composer e Laravel 
-
-`https://blog.codeexpertslearning.com.br/instalando-laravel-installer-no-windows-3bbf352367d2`
-
-<br/>
-
 ## 📦 Desenvolvimento Backend (Ferramentas utilizadas na API Laravel)
 
 Rotas e Métodos Resources.<br/>
