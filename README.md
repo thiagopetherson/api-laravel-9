@@ -8,7 +8,7 @@ Projeto de um sistema de cadastro de lojas e produtos onde são feitas todas as 
 
 Desenvolvimento de uma API em Laravel 9 com duas tabelas que se relacionam (Has Many): Tabelas stores (lojas) e products (produtos). Eu segui o padrão de nomenclatura das tabelas e campos em inglês.
 
-A tabela stores possui os campos (id, name, email, created_at e updated_at). 
+A tabela stores possui os campos (id, name, email, created_at e updated_at).<br/>
 A tabela products possui os campos (id, store_id, name, value, active, created_at e updated_at)
 
 
