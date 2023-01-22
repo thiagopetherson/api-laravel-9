@@ -1,4 +1,4 @@
-# Teste SOLUTTI
+# API - Laravel 9
 
 Projeto de um sistema de cadastro de lojas e produtos onde são feitas todas as etapas de um CRUD: Create, Read, Update e Delete.
 
@@ -6,7 +6,7 @@ Projeto de um sistema de cadastro de lojas e produtos onde são feitas todas as 
 ## 🚀 Detalhes
 
 
-Desenvolvimento de uma API em Laravel 9 com duas tabelas que se relacionam (Has Many): Tabelas stores (lojas) e products (produtos). Eu segui o padrão de nomenclatura das tabelas e campos em inglês.
+Desenvolvimento de uma API em Laravel 9 com duas tabelas que se relacionam (Has Many): Tabelas stores (lojas) e products (produtos).
 
 A tabela stores possui os campos (id, name, email, created_at e updated_at).<br/>
 A tabela products possui os campos (id, store_id, name, value, active, created_at e updated_at)
@@ -27,6 +27,7 @@ Métodos de Relacionamentos Has Many - Joins de Tabelas<br/>
 Mutator - Usamos para máscara de saída<br/>
 Form Requests - Validação<br/>
 Helpers - Reutilização e Clean Code<br/>
+Envio de Email - Usando o Mail do Laravel<br/>
 
 
 ## 🔧 Instalação e Inicialização do Projeto (Laravel 9)
