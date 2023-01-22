@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Http\Requests\Store\StoreStoreRequest; // Form Request
 use App\Http\Requests\Store\StoreUpdateRequest; // Form Request
-
+use Symfony\Component\HttpFoundation\Response;
 
 class StoreController extends Controller
 {
@@ -16,10 +16,11 @@ class StoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        $store = Store::with('products')->get();
-        return response()->json($store, 200); 
-    }   
+    {
+        // $store = Store::with('products')->get();
+        $stores = Store::all();
+        return response()->json($stores, 200);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -31,8 +32,8 @@ class StoreController extends Controller
     {
        $store = new Store;
        $store->name = $request->name;
-       $store->email = $request->email;   
-       $store->save();    
+       $store->email = $request->email;
+       $store->save();
 
        return response()->json($store, 200);
     }
@@ -45,15 +46,16 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        $store = Store::with('products')->where('id',$id)->first();
-        
+        // $store = Store::with('products')->where('id',$id)->first();
+        $store = Store::find($id);
+
         if($store === null) {
             return response()->json(['erro' => 'Loja pesquisada não existe'], 404);
-        } 
+        }
 
         return response()->json($store, 200);
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -64,8 +66,8 @@ class StoreController extends Controller
      */
     public function update(StoreUpdateRequest $request, $id)
     {
-        $store = Store::find($id);  
-        
+        $store = Store::find($id);
+
         if($store) {
             $store->name = $request->name;
             $store->email = $request->email;
@@ -88,7 +90,7 @@ class StoreController extends Controller
 
         if($store) {
             $store->delete();
-            return response()->json(['Mensagem:' => 'A loja e seus produtos foram excluídos com sucesso!'], 200);         
+            return response()->json(['Mensagem:' => 'A loja e seus produtos foram excluídos com sucesso!'], Response::HTTP_NO_CONTENT);
         }
 
         return response()->json(['erro' => 'Impossível realizar a exclusão. A loja não existe'], 404);

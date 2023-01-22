@@ -13,7 +13,7 @@ class Store extends Model
     protected $fillable = ['name','email'];
     public $timestamps = true;
     protected $table = "stores";
-    
+
     // Relacionamento com Product
     public function products(){
         return $this->hasMany(Product::class, 'store_id', 'id');
