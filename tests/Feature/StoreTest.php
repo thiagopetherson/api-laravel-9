@@ -85,7 +85,6 @@ class StoreTest extends TestCase
                 "email" => $store->email
             ]
         );
-
     }
 
     /** @test */
