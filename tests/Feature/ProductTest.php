@@ -90,10 +90,10 @@ class ProductTest extends TestCase
 
         $this->assertCount(1, Product::all());
 
-        $this->assertEquals($product->store_id, $store->id);
-        $this->assertEquals($product->name, 'Produto Inserido Teste');
-        $this->assertEquals($product->value, 'R$ 5.537,00');
-        $this->assertEquals($product->active, 1);
+        $this->assertEquals($store->id, $product->store_id);
+        $this->assertEquals('Produto Inserido Teste', $product->name);
+        $this->assertEquals('R$ 5.537,00', $product->value);
+        $this->assertEquals(1, $product->active);
 
         $response->assertJson(
             [
@@ -126,10 +126,10 @@ class ProductTest extends TestCase
 
         $product = $product->fresh();
 
-        $this->assertEquals($product->store_id, $store->id);
-        $this->assertEquals($product->name, 'Produto Atualizado Teste');
-        $this->assertEquals($product->value, 'R$ 8.435,00');
-        $this->assertEquals($product->active, 0);
+        $this->assertEquals($store->id, $product->store_id);
+        $this->assertEquals('Produto Atualizado Teste', $product->name);
+        $this->assertEquals('R$ 8.435,00', $product->value);
+        $this->assertEquals(0, $product->active);
 
         $response->assertJson(
             [
@@ -153,6 +153,6 @@ class ProductTest extends TestCase
 
         $response = $this->deleteJson("api/product/{$product->id}")->assertNoContent();
 
-        $this->assertCount(0, Product::all());
+        $this->assertEmpty(Product::all());
     }
 }

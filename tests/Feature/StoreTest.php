@@ -75,8 +75,8 @@ class StoreTest extends TestCase
 
         $this->assertCount(1, Store::all());
 
-        $this->assertEquals($store->name, 'Loja Bonita Teste');
-        $this->assertEquals($store->email, 'lojabonitateste@email.com');
+        $this->assertEquals('Loja Bonita Teste', $store->name);
+        $this->assertEquals('lojabonitateste@email.com', $store->email);
 
         $response->assertJson(
             [
@@ -103,8 +103,8 @@ class StoreTest extends TestCase
 
         $store = $store->fresh();
 
-        $this->assertEquals($store->name, 'Lojaa Bonitaa Testee');
-        $this->assertEquals($store->email, 'lojaabonitaatestee@email.com');
+        $this->assertEquals('Lojaa Bonitaa Testee', $store->name);
+        $this->assertEquals('lojaabonitaatestee@email.com', $store->email);
 
         $response->assertJson(
             [

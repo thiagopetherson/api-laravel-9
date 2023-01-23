@@ -17,7 +17,6 @@ class StoreController extends Controller
      */
     public function index()
     {
-        // $store = Store::with('products')->get();
         $stores = Store::all();
         return response()->json($stores, 200);
     }
@@ -94,5 +93,27 @@ class StoreController extends Controller
         }
 
         return response()->json(['erro' => 'Impossível realizar a exclusão. A loja não existe'], 404);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexWithProducts()
+    {
+        $stores = Store::with('products')->get();
+        return response()->json($stores, 200);
+    }
+
+    public function showWithProducts($id)
+    {
+        $store = Store::with('products')->where('id',$id)->first();
+
+        if($store === null) {
+            return response()->json(['erro' => 'Loja pesquisada não existe'], 404);
+        }
+
+        return response()->json($store, 200);
     }
 }
