@@ -28,6 +28,7 @@ Mutator - Usamos para máscara de saída<br/>
 Form Requests - Validação<br/>
 Helpers - Reutilização e Clean Code<br/>
 Envio de Email - Usando o Mail do Laravel<br/>
+Testes - Usando o PHPUnit<br/>
 
 
 ## 🔧 Instalação e Inicialização do Projeto (Laravel 9)
