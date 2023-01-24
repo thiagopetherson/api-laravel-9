@@ -33,15 +33,15 @@ class StoreTest extends TestCase
                 "id" => $stores->first()->id,
                 "name" => $stores->first()->name,
                 "email" => $stores->first()->email,
-                "created_at" => $stores->first()->created_at->format('Y-m-d H:i:s'),
-                "updated_at" => $stores->first()->updated_at->format('Y-m-d H:i:s')
+                "created_at" => $stores->first()->created_at,
+                "updated_at" => $stores->first()->updated_at
             ],
             [
                 "id" => $stores->last()->id,
                 "name" => $stores->last()->name,
                 "email" => $stores->last()->email,
-                "created_at" => $stores->last()->created_at->format('Y-m-d H:i:s'),
-                "updated_at" => $stores->last()->updated_at->format('Y-m-d H:i:s')
+                "created_at" => $stores->last()->created_at,
+                "updated_at" => $stores->last()->updated_at
             ]
         ]);
     }
@@ -64,8 +64,8 @@ class StoreTest extends TestCase
                 "id" => $store->id,
                 "name" => $store->name,
                 "email" => $store->email,
-                "created_at" => $store->created_at->format('Y-m-d H:i:s'),
-                "updated_at" => $store->updated_at->format('Y-m-d H:i:s')
+                "created_at" => $store->created_at,
+                "updated_at" => $store->updated_at
             ]
         );
     }
@@ -119,7 +119,8 @@ class StoreTest extends TestCase
             [
                 "id" => $store->id,
                 "name" => $store->name,
-                "email" => $store->email
+                "email" => $store->email,
+                "created_at" => $store->created_at
             ]
         );
     }
@@ -164,8 +165,8 @@ class StoreTest extends TestCase
                         "name" => $stores->first()->products->first()->name,
                         "value" => $stores->first()->products->first()->value,
                         "active" => $stores->first()->products->first()->active,
-                        "created_at" => $stores->first()->products->first()->created_at->format('Y-m-d H:i:s'),
-                        "updated_at" => $stores->first()->products->first()->updated_at->format('Y-m-d H:i:s')
+                        "created_at" => $stores->first()->products->first()->created_at,
+                        "updated_at" => $stores->first()->products->first()->updated_at
                     ]
                 ]
             ]
@@ -199,6 +200,40 @@ class StoreTest extends TestCase
                     ->where('products', [])
             )
         );
+    }
+
+    /** @test */
+    public function store_method_show_with_products()
+    {
+        $this->withoutExceptionHandling();
+
+        $store = Store::factory()->create();
+        Product::factory(5)->create();
+
+        $response = $this->getJson("api/store-show-with-products/{$store->id}");
+
+        $response->assertStatus(200)->assertOk();
+
+        $store = Store::with('products')->where('id',$store->id)->first();
+
+        $response->assertJson([
+            "id" => $store->id,
+            "name" => $store->name,
+            "email" => $store->email,
+            "created_at" => $store->created_at,
+            "updated_at" => $store->updated_at,
+            "products" => [
+                [
+                    "id" => $store->first()->products->first()->id,
+                    "store_id" => $store->first()->products->first()->store_id,
+                    "name" => $store->first()->products->first()->name,
+                    "value" => $store->first()->products->first()->value,
+                    "active" => $store->first()->products->first()->active,
+                    "created_at" => $store->first()->products->first()->created_at,
+                    "updated_at" => $store->first()->products->first()->updated_at
+                ]
+            ]
+        ]);
     }
 
 }

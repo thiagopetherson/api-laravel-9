@@ -27,3 +27,5 @@ Route::get('store-index-with-products', [StoreController::class, 'indexWithProdu
 Route::get('store-show-with-products/{id}', [StoreController::class, 'showWithProducts']);
 
 Route::apiResource('product', ProductController::class);
+Route::get('product-index-with-store', [ProductController::class, 'indexWithStore']);
+Route::get('product-show-with-store/{id}', [ProductController::class, 'showWithStore']);

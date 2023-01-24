@@ -99,12 +99,19 @@ class StoreController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
     public function indexWithProducts()
     {
         $stores = Store::with('products')->get();
         return response()->json($stores, 200);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
 
     public function showWithProducts($id)
     {

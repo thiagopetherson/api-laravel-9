@@ -116,4 +116,33 @@ class ProductController extends Controller
 
         return response()->json(['erro' => 'Impossível realizar a exclusão. O produto não existe'], 404);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function indexWithStore()
+    {
+        $products = Product::with('store')->get();
+        return response()->json($products, 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
+
+    public function showWithStore($id)
+    {
+        $product = Product::with('store')->where('id',$id)->first();
+
+        if($product === null) {
+            return response()->json(['erro' => 'Produto pesquisado não existe'], 404);
+        }
+
+        return response()->json($product, 200);
+    }
 }

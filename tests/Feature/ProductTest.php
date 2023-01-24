@@ -34,14 +34,18 @@ class ProductTest extends TestCase
                 "store_id" => $products->first()->store_id,
                 "name" => $products->first()->name,
                 "value" => $products->first()->value,
-                "active" => $products->first()->active
+                "active" => $products->first()->active,
+                "created_at" => $products->first()->created_at,
+                "updated_at" => $products->first()->updated_at
             ],
             [
                 "id" => $products->last()->id,
                 "store_id" => $products->last()->store_id,
                 "name" => $products->last()->name,
                 "value" => $products->last()->value,
-                "active" => $products->last()->active
+                "active" => $products->last()->active,
+                "created_at" => $products->last()->created_at,
+                "updated_at" => $products->last()->updated_at
             ]
         ]);
     }
@@ -67,7 +71,9 @@ class ProductTest extends TestCase
                 "store_id" => $product->store_id,
                 "name" => $product->name,
                 "value" => $product->value,
-                "active" => $product->active
+                "active" => $product->active,
+                "created_at" => $product->created_at,
+                "updated_at" => $product->updated_at
             ]
         );
     }
@@ -101,7 +107,9 @@ class ProductTest extends TestCase
                 "store_id" => $product->store_id,
                 "name" => $product->name,
                 "value" => $product->value,
-                "active" => $product->active
+                "active" => $product->active,
+                "created_at" => $product->created_at,
+                "updated_at" => $product->updated_at
             ]
         );
     }
@@ -137,7 +145,9 @@ class ProductTest extends TestCase
                 "store_id" => $product->store_id,
                 "name" => $product->name,
                 "value" => $product->value,
-                "active" => $product->active
+                "active" => $product->active,
+                "created_at" => $product->created_at,
+                "updated_at" => $product->updated_at
             ]
         );
     }
@@ -154,5 +164,71 @@ class ProductTest extends TestCase
         $response = $this->deleteJson("api/product/{$product->id}")->assertNoContent();
 
         $this->assertEmpty(Product::all());
+    }
+
+    /** @test */
+    public function product_method_index_with_store()
+    {
+        $this->withoutExceptionHandling();
+
+        Store::factory(5)->create();
+        Product::factory(50)->create();
+
+        $response = $this->getJson('api/product-index-with-store');
+
+        $response->assertStatus(200)->assertOk();
+
+        $products = Product::with('store')->get();
+
+        $response->assertJson([
+            [
+                "id" => $products->first()->id,
+                "store_id" => $products->first()->store_id,
+                "value" => $products->first()->value,
+                "active" => $products->first()->active,
+                "created_at" => $products->first()->created_at,
+                "updated_at" => $products->first()->updated_at,
+                "store" => [
+                    "id" => $products->first()->store->id,
+                    "name" => $products->first()->store->name,
+                    "email" => $products->first()->store->email,
+                    "created_at" => $products->first()->store->created_at,
+                    "updated_at" => $products->first()->store->updated_at
+                ]
+            ]
+        ]);
+    }
+
+    /** @test */
+    public function product_method_show_with_store()
+    {
+        $this->withoutExceptionHandling();
+
+        Store::factory(5)->create();
+        Product::factory(100)->create();
+        $product = Product::all()->random();
+
+        $response = $this->getJson("api/product-show-with-store/{$product->id}");
+
+        $response->assertStatus(200)->assertOk();
+
+        $product = Product::with('store')->where('id',$product->id)->first();
+
+        $response->assertJson([
+            "id" => $product->id,
+            "store_id" => $product->store_id,
+            "name" => $product->name,
+            "value" => $product->value,
+            "active" => $product->active,
+            "created_at" => $product->created_at,
+            "updated_at" => $product->updated_at,
+            "store" => [
+                "id" => $product->store->id,
+                "name" => $product->store->name,
+                "email" => $product->store->email,
+                "created_at" => $product->store->created_at,
+                "updated_at" => $product->store->updated_at
+            ]
+        ]);
     }
 }
