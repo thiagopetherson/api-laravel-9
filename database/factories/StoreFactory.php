@@ -18,7 +18,7 @@ class StoreFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->company(),
             'email' => fake()->unique()->safeEmail(),
             'created_at' => now(),
             'updated_at' => now()

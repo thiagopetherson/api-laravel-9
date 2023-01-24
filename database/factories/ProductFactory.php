@@ -19,7 +19,7 @@ class ProductFactory extends Factory
     {
         return [
             'store_id' => Store::all()->random(),
-            'name' => fake()->name(),
+            'name' => fake()->word(),
             'value' => fake()->numberBetween(1, 9999),
             'active' => fake()->boolean(50),
             'created_at' => now(),
