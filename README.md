@@ -43,6 +43,9 @@ Rode o comando abaixo (No terminal, na pasta raiz do projeto), para criação da
  
 `php artisan migrate`
 
+Rode o comando abaixo para executar o seed e rodar as factories de Store e Product para popular o banco:
+
+`php artisan db:seed`
 
 Para teste do envio de email, recomendo o uso do Mailtrap. Pois foi o que foi usado no desenvolvimento. Você deve ir no site `https://mailtrap.io/` e fazer o cadastro.
 
@@ -58,7 +61,13 @@ Por fim, rodamos o comando abaixo, que roda nossa aplicação backend laravel (N
  
 `php artisan serve`
 
+Para rodar um teste específico você pode rodar o seguinte comando:
 
+`php artisan test --filter nome_do_teste`
+
+Para rodar todos os testes de uma só vez você pode rodar o seguinte comando:
+
+`php artisan test`
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
